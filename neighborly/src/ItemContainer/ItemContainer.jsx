@@ -5,6 +5,7 @@ import NewItemComponent from './NewItemComponent/NewItemComponent';
 
 const ItemContainer = () => {
     const [neighborhoods, setNeighborhoods] = useState([]);
+    const [requestError, setRequestError] = useState("");
     const [newItemServerError, setNewItemServerError] = useState("");
     const [showing, setShowing] = useState(false);
     const toggleShowing = () => {
@@ -73,6 +74,30 @@ const ItemContainer = () => {
         } catch (err) {
             console.log(err);
         }
+    };
+    const updateNeighborhood = async (idToUpdate, neighborhoodToUpdate) => {
+        const apiResponse = await fetch(`http://localhost:3001/neighborhoods/${idToUpdate}`, {
+            method: "PUT",
+            body: JSON.stringify(neighborhoodToUpdate),
+            headers: {
+                "Content-Type": "application/json"
+            }
+        })
+        const parsedResponse = await apiResponse.json();
+        if (parsedResponse.status == 200) {
+            const newNeighborhoods = [];
+            for (let i=0; i<neighborhoods.length; i++) {
+                if (neighborhoods[i]._id == idToUpdate) {
+                    newNeighborhoods.push(neighborhoodToUpdate);
+                } else {
+                    newNeighborhoods.push(neighborhoods[i]);
+                }
+            }
+            setNeighborhoods(newNeighborhoods);
+        } else {
+            setRequestError(parsedResponse.data);
+        }
+        
     }
     useEffect(getNeighborhoods, []);
     return (
@@ -81,12 +106,13 @@ const ItemContainer = () => {
                 neighborhoods.map( (neighborhood) => {
                     console.log(neighborhood._id);
                     return (
-                        <SingleItemComponent key={neighborhood._id} neighborhood={neighborhood} deleteNeighborhood={deleteNeighborhood}></SingleItemComponent>
+                        <SingleItemComponent key={neighborhood._id} neighborhood={neighborhood} deleteNeighborhood={deleteNeighborhood} updateNeighborhood={updateNeighborhood}></SingleItemComponent>
                     )
                 })
                 :
                 <button onClick={toggleShowing}>View Neighborhoods</button>
             }
+            <br></br>
             <NewItemComponent createNewNeighborhood={createNewNeighborhood} newItemServerError={newItemServerError}></NewItemComponent>
         </div>
     );
