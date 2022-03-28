@@ -34,6 +34,7 @@ const SingleItemComponent = (props) => {
     return (
         <div>
             <h1>{props.neighborhood.name}</h1>
+            <img src={props.neighborhood.img}></img>
             <button>View More</button>
             <button onClick={ ()=> {
                 props.deleteNeighborhood(props.neighborhood._id);
@@ -52,6 +53,7 @@ const SingleItemComponent = (props) => {
                         {isValidState.valid ? null : <p className='form-error'>{isValidState.message}</p>}
                         Neighborhood Name: <input type="text" name="name" onChange={handleInputChange} value={updateNeighborhood.name}></input>
                         Location: <input type="text" name="location" onChange={handleInputChange} value={updateNeighborhood.location}></input>
+                        Image: <input type="text" name="img" onChange={handleInputChange} value={updateNeighborhood.img}></input>
                         <br></br>
                         <button type="submit">Submit</button>
                     </form>

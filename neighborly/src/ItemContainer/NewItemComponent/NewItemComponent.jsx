@@ -9,7 +9,8 @@ const NewItemComponent = (props) => {
     };
     const [newNeighborhood, setNewNeighborhood] = useState ({
         name: "",
-        location: ""
+        location: "",
+        img: ""
     });
     const handleInputChange = (e) => {
         setNewNeighborhood ({
@@ -34,7 +35,8 @@ const NewItemComponent = (props) => {
             // when we hit submit, we also want to reset values of input fields and set default value to equal these
             setNewNeighborhood({
                 name: "",
-                location: ""
+                location: "",
+                img: ""
             });
             setIsValidState({
                 valid: true,
@@ -60,6 +62,7 @@ const NewItemComponent = (props) => {
                         {props.newItemServerError ? <p className='form-error'>{props.newItemServerError}</p> : null}
                         Neighborhood Name: <input type="text" name="name" onChange={handleInputChange} value={newNeighborhood.name}></input>
                         Location: <input type="text" name="location" onChange={handleInputChange} value={newNeighborhood.location}></input>
+                        Image: <input type="text" name="img" onChange={handleInputChange} value={newNeighborhood.img}></input>
                         <br></br>
                         <button type="submit">Submit</button>
                     </form>
