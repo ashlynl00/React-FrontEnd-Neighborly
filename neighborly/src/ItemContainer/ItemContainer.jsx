@@ -36,6 +36,34 @@ const ItemContainer = () => {
             setNewItemServerError(parsedResponse.data);
         }
     };
+    // create delete function
+    const deleteNeighborhood = async (neighborhoodId) => {
+        console.log('deleting item id');
+        try {
+            const apiResponse = await fetch(`http://localhost:3001/neighborhoods/${neighborhoodId}`, {
+                method: "DELETE"
+            });
+            const parsedResponse = await apiResponse.json();
+            console.log(parsedResponse);
+            // was it successful in deleting?
+            if (parsedResponse.status == 200) {
+                // we want to return an array of new items without the deleted item
+                const newNeighborhoods = [];
+                // loop through each item and if it matches the id of the selected item, then don't add it to the array
+                for (let i=0; i<neighborhoods.length; i++) {
+                    if (neighborhoods[i]._id !== neighborhoodId) {
+                        newNeighborhoods.push(neighborhoods[i]);
+                    }
+                }
+                // set the items equal to this new items array
+                setNeighborhoods(newNeighborhoods);
+            } else {
+
+            }
+        } catch (err) {
+            console.log(err);
+        };
+    }
     // fetch items from server and display them
     const getNeighborhoods = async () => {
         try {
@@ -50,9 +78,10 @@ const ItemContainer = () => {
     return (
         <div>
             { showing ?
-                neighborhoods.map( (neighborhood, index) => {
+                neighborhoods.map( (neighborhood) => {
+                    console.log(neighborhood._id);
                     return (
-                        <SingleItemComponent key={index} neighborhood={neighborhood}></SingleItemComponent>
+                        <SingleItemComponent key={neighborhood._id} neighborhood={neighborhood} deleteNeighborhood={deleteNeighborhood}></SingleItemComponent>
                     )
                 })
                 :
