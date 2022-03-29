@@ -34,15 +34,13 @@ const SingleItemComponent = (props) => {
     return (
         <div>
             <h1>{props.neighborhood.name}</h1>
-            <img src={props.neighborhood.img}></img>
-            <button>View More</button>
-            <button onClick={ ()=> {
-                props.deleteNeighborhood(props.neighborhood._id);
-            }}>Delete this Neighborhood</button>
-            <button onClick={ ()=> {
-                // don't forget to put in the parameter!
-                props.deleteNeighborhood(props.neighborhood._id);
-            }}>Delete</button>
+            <img src={props.neighborhood.img} className="neighborhood-img"></img>
+            <div className="buttons">
+                <button>View More</button>
+                <button onClick={ ()=> {
+                    props.deleteNeighborhood(props.neighborhood._id);
+                }}>Delete this Neighborhood</button>
+            </div>
             {showing ?
                 // <div id="edit-neighborhood-form">
                 //     {/* close button for form */}

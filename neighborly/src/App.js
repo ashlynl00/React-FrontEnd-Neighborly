@@ -5,6 +5,8 @@ import Nav from './NavComponents/nav';
 import About from './NavComponents/about';
 import Contact from './NavComponents/contact';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import NewItemComponent from './ItemContainer/NewItemComponent/NewItemComponent';
+import {Link} from 'react-router-dom';
 
 function App() {
   return (
@@ -15,9 +17,9 @@ function App() {
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<About />}></Route>
           <Route path="/contact" element={<Contact />}></Route>
+          <Route path="/view" element={<ItemContainer />}></Route>
+          {/* <Route path="/create" element={<NewItemComponent createNewNeighborhood={createNewNeighborhood} newItemServerError={newItemServerError} />}></Route> */}
         </Routes>
-        
-        
       </div>
     </Router>
   );
@@ -27,7 +29,12 @@ const Home = () => {
     <main>
           <h1>Welcome to Neighborly!</h1>
           <h2>Find your neighborhood community!</h2>
-          <ItemContainer></ItemContainer>
+          <div className='buttons'>
+            <Link to='/view'>
+              <button>View Neighborhoods</button>
+            </Link>
+          </div>
+          {/* <ItemContainer></ItemContainer> */}
     </main>
   );
 };

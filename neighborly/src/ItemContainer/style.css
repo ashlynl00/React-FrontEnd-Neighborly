@@ -7,3 +7,7 @@ button {
     border: none;
     font-size: 14px;
 }
+
+.neighborhood-img {
+    width: 500px;
+}

@@ -47,10 +47,7 @@ const NewItemComponent = (props) => {
     };
     return (
         <>
-            {/* create ternary to decide what will show depending on if showing is equal to true */}
             { showing ?
-                //// if it is showing, we want to show the form
-                // create form to allow the user to input a new product
                 <div id="new-item-form">
                     {/* close button for form */}
                     <button onClick={toggleShowing}>Close</button>
@@ -68,9 +65,9 @@ const NewItemComponent = (props) => {
                     </form>
                 </div>
                 :
-                // else, show the button to create one that also has an event listener attached
-                <button onClick={toggleShowing}>Create a New Neighborhood</button>
+                <button onClick={toggleShowing}>Create New Neighborhood</button>
             }
+            
         </>
     );
 };

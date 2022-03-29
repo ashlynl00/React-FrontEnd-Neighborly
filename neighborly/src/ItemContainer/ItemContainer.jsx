@@ -3,6 +3,8 @@ import { useState, useEffect } from 'react';
 import SingleItemComponent from './SingleItemComponent/SingleItemComponent';
 import NewItemComponent from './NewItemComponent/NewItemComponent';
 import './style.css';
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import {Link} from 'react-router-dom';
 
 const ItemContainer = () => {
     const [neighborhoods, setNeighborhoods] = useState([]);
@@ -103,16 +105,12 @@ const ItemContainer = () => {
     useEffect(getNeighborhoods, []);
     return (
         <div>
-            { showing ?
-                neighborhoods.map( (neighborhood) => {
-                    console.log(neighborhood._id);
-                    return (
-                        <SingleItemComponent key={neighborhood._id} neighborhood={neighborhood} deleteNeighborhood={deleteNeighborhood} updateNeighborhood={updateNeighborhood}></SingleItemComponent>
-                    )
-                })
-                :
-                <button onClick={toggleShowing}>View Neighborhoods</button>
-            }
+            {neighborhoods.map( (neighborhood) => {
+                console.log(neighborhood._id);
+                return (
+                    <SingleItemComponent key={neighborhood._id} neighborhood={neighborhood} deleteNeighborhood={deleteNeighborhood} updateNeighborhood={updateNeighborhood}></SingleItemComponent>
+                )
+            })}
             <br></br>
             <NewItemComponent createNewNeighborhood={createNewNeighborhood} newItemServerError={newItemServerError}></NewItemComponent>
         </div>
