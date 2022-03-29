@@ -8,6 +8,11 @@ button {
     font-size: 14px;
 }
 
+button:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+}
+
 .neighborhood-img {
     width: 500px;
 }

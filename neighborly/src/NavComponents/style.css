@@ -2,14 +2,37 @@ nav {
     display: flex;
     justify-content: space-between;
     margin: 10px;
-  }
+    height: 40px;
+    align-items: center;
+}
   
-  nav ul li {
+nav ul li {
     list-style-type: none;
-  }
-  
-  nav ul {
+    color: black;
+}
+
+nav ul li:hover {
+    color: lightgrey;
+    transform: scale(1.1);
+}
+
+nav ul a {
+    text-decoration: none;
+}
+
+nav ul {
     display: flex;
     width: 100%;
     justify-content: space-around;
-  }
+}
+
+#logo {
+    height: 40px;
+    width: 40px;
+    margin-left: 5px;
+}
+
+.description {
+    padding: 10px;
+    margin: 40px;
+}
