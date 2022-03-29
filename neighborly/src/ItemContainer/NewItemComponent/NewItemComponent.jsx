@@ -69,7 +69,7 @@ const NewItemComponent = (props) => {
                 </div>
                 :
                 // else, show the button to create one that also has an event listener attached
-                <button onClick={toggleShowing}>Create new item</button>
+                <button onClick={toggleShowing}>Create a New Neighborhood</button>
             }
         </>
     );

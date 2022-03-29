@@ -2,6 +2,7 @@ import React from 'react';
 import { useState, useEffect } from 'react';
 import SingleItemComponent from './SingleItemComponent/SingleItemComponent';
 import NewItemComponent from './NewItemComponent/NewItemComponent';
+import './style.css';
 
 const ItemContainer = () => {
     const [neighborhoods, setNeighborhoods] = useState([]);
