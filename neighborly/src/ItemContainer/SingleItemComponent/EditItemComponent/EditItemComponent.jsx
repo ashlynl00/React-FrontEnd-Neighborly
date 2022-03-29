@@ -7,6 +7,7 @@ const EditItemComponent = (props) => {
     const [updateNeighborhood, setUpdateNeighborhood] = useState({
         name: props.neighborhood.name,
         location: props.neighborhood.location,
+        img: props.neighborhood.img,
         _id: props.neighborhood._id
     });
     // create a new function to listen for change, which is determined by an event, and get the value of the change
