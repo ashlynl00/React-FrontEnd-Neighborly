@@ -13,4 +13,4 @@ const Login = () => {
     );
 };
 
-export default About;
+export default Login;
