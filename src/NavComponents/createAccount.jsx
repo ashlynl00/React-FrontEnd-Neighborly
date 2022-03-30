@@ -1,7 +1,8 @@
 import React from "react";
 import './style.css';
+import { useState } from "react";
 
-const Login = () => {
+const Login = (props) => {
     const [isValidState, setIsValidState] = useState ({valid: true, message: ""});
     const [newUser, setNewUser] = useState ({
         username: "",
@@ -42,8 +43,8 @@ const Login = () => {
     return (
         <>
             <form onSubmit={submitNewUser}>
-                Username: <input type="text" name="username"></input>
-                Password: <input type="text" name="password"></input>
+                Username: <input type="text" name="username" onChange={handleInputChange} value={newUser.username}></input>
+                Password: <input type="text" name="password" onChange={handleInputChange} value={newUser.password}></input>
                 <button type="submit">Submit</button>
             </form>
         </>
