@@ -19,7 +19,7 @@ const ItemContainer = () => {
         console.log(newNeighborhood);
         console.log('let us create this');
         // send a request to the backend
-        const apiResponse = await fetch('http://localhost:3001/neighborhoods', {
+        const apiResponse = await fetch('https://pacific-inlet-98825.herokuapp.com/neighborhoods', {
             method: "POST",
             body: JSON.stringify(newNeighborhood),
             headers: {
@@ -44,7 +44,7 @@ const ItemContainer = () => {
     const deleteNeighborhood = async (neighborhoodId) => {
         console.log('deleting item id');
         try {
-            const apiResponse = await fetch(`http://localhost:3001/neighborhoods/${neighborhoodId}`, {
+            const apiResponse = await fetch(`https://pacific-inlet-98825.herokuapp.com/neighborhoods/${neighborhoodId}`, {
                 method: "DELETE"
             });
             const parsedResponse = await apiResponse.json();
@@ -71,7 +71,7 @@ const ItemContainer = () => {
     // fetch items from server and display them
     const getNeighborhoods = async () => {
         try {
-            const neighborhoods = await fetch("http://localhost:3001/neighborhoods");
+            const neighborhoods = await fetch("https://pacific-inlet-98825.herokuapp.com/neighborhoods");
             const parsedNeighborhoods = await neighborhoods.json();
             setNeighborhoods(parsedNeighborhoods.data);
         } catch (err) {
@@ -79,7 +79,7 @@ const ItemContainer = () => {
         }
     };
     const updateNeighborhood = async (idToUpdate, neighborhoodToUpdate) => {
-        const apiResponse = await fetch(`http://localhost:3001/neighborhoods/${idToUpdate}`, {
+        const apiResponse = await fetch(`https://pacific-inlet-98825.herokuapp.com/${idToUpdate}`, {
             method: "PUT",
             body: JSON.stringify(neighborhoodToUpdate),
             headers: {
