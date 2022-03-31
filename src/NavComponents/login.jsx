@@ -4,32 +4,32 @@ import { useState } from "react";
 
 const Login = (props) => {
     const [isValidState, setIsValidState] = useState ({valid: true, message: ""});
-    const [newUser, setNewUser] = useState ({
+    const [userLogin, setUserLogin] = useState({
         username: "",
         password: ""
     });
     const handleInputChange = (e) => {
-        setNewUser ({
-            ...newUser,
+        setUserLogin ({
+            ...userLogin,
             [e.target.name]: e.target.value
         });
     };
-    const submitNewUser = (e)=>{
+    const submitUserInfo = (e)=>{
         e.preventDefault();
         let validSubmission = true;
         // check if input is valid
-        if (newUser.username.length < 3) {
+        if (userLogin.username.length < 3) {
             setIsValidState({
                 valid: false,
-                message: "Username needs to be longer"
+                message: "Name needs to be longer"
             });
             validSubmission = false;
         };
         if (validSubmission) {
             // call new item function and pass in the newItem state as the parameter
-            props.createNewUser(newUser);
+            props.checkAccounts(userLogin);
             // when we hit submit, we also want to reset values of input fields and set default value to equal these
-            setNewUser({
+            setUserLogin({
                 username: "",
                 password: ""
             });
@@ -41,9 +41,9 @@ const Login = (props) => {
     };
     return (
         <>
-            <form onSubmit={submitNewUser}>
-                Username: <input type="text" name="username" onChange={handleInputChange} value={newUser.username}></input>
-                Password: <input type="text" name="password" onChange={handleInputChange} value={newUser.password}></input>
+            <form onSubmit={submitUserInfo}>
+                Username: <input type="text" name="username" onChange={handleInputChange} value={userLogin.username}></input>
+                Password: <input type="text" name="password" onChange={handleInputChange} value={userLogin.password}></input>
                 <button type="submit">Submit</button>
             </form>
         </>

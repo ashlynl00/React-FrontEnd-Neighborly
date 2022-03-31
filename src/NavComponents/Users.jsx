@@ -4,12 +4,17 @@ import './style.css';
 import CreateAccount from './createAccount';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import {Link} from 'react-router-dom';
+import Login from './login';
 
 const UserContainer = () => {
     const [users, setUsers] = useState([]);
     const [requestError, setRequestError] = useState("");
     const [newUserServerError, setNewUserServerError] = useState("");
     const [showing, setShowing] = useState(false);
+    const [currentUser, setCurrentUser] = useState({
+        username: "",
+        password: ""
+    });
     const toggleShowing = () => {
         setShowing(!showing);
     }
@@ -100,11 +105,21 @@ const UserContainer = () => {
         } else {
             setRequestError(parsedResponse.data);
         }
-        
     }
+    const checkAccounts = async (userLogin) => {
+        const apiResponse = await fetch('https://pacific-inlet-98825.herokuapp.com/users/login');
+        const parsedResponse = await apiResponse.json();
+        if (parsedResponse.status == 200) {
+            setCurrentUser(userLogin);
+            console.log(currentUser);
+        } else {
+            console.log(parsedResponse.data);
+        };
+    };
     useEffect(getUsers, []);
     return (
         <div>
+            <Login users={users} checkAccounts={checkAccounts}></Login>
             <CreateAccount createNewUser={createNewUser} newUserServerError={newUserServerError}></CreateAccount>
         </div>
     );
