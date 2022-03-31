@@ -31,6 +31,7 @@ const UserContainer = () => {
         if (parsedResponse.status == 200) {
             // add the new item to state
             setUsers([parsedResponse.data, ...users]);
+            console.log(users);
         } else {
             //else:
             // show the error message in the form, don't change it back
