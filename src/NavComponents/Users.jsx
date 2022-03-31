@@ -20,7 +20,7 @@ const UserContainer = () => {
         // send a request to the backend
         const apiResponse = await fetch('https://pacific-inlet-98825.herokuapp.com/users', {
             method: "POST",
-            body: JSON.stringify(newNeighborhood),
+            body: JSON.stringify(newUser),
             headers: {
                 "Content-Type": "application/json"
             }
@@ -43,7 +43,7 @@ const UserContainer = () => {
     const deleteUser = async (userId) => {
         console.log('deleting user id');
         try {
-            const apiResponse = await fetch(`https://pacific-inlet-98825.herokuapp.com/users/${neighborhoodId}`, {
+            const apiResponse = await fetch(`https://pacific-inlet-98825.herokuapp.com/users/${userId}`, {
                 method: "DELETE"
             });
             const parsedResponse = await apiResponse.json();
@@ -109,4 +109,4 @@ const UserContainer = () => {
     );
 };
 
-export default ItemContainer;
+export default UserContainer;
