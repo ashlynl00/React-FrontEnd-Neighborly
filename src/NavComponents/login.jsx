@@ -40,7 +40,7 @@ const Login = (props) => {
                     valid: true,
                     message: ""
                 });
-                navigate('/profile');
+                // navigate('/profile');
                 //props.joinNeighborhood('624686e7a5a81532df154b34','62424700236c84c48eac723f')
         }; 
         // navigate to the profile page which will eventually show the neighborhood they are apart of 

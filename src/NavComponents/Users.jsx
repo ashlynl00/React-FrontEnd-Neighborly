@@ -3,12 +3,13 @@ import { useState, useEffect } from 'react';
 import './style.css';
 import CreateAccount from './createAccount';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import {Link} from 'react-router-dom';
+import {Link, useNavigate} from 'react-router-dom';
 import Login from './login';
 import apiUrl from "../apiConfig";
 import { parse } from 'ipaddr.js';
 
 const UserContainer = (props) => {
+    const navigate = useNavigate();
     const [users, setUsers] = useState([]);
     const [requestError, setRequestError] = useState("");
     const [newUserServerError, setNewUserServerError] = useState("");
@@ -146,15 +147,22 @@ const UserContainer = (props) => {
         });
         const parsedResponse = await apiResponse.json();
         if (parsedResponse.status == 200) {
-            console.log(parsedResponse.data);
-            setCurrentUser({
-                ...currentUser,
-                username: parsedResponse.data.username,
-                password: parsedResponse.data.password
-            });
-            localStorage.setItem('currentUser', JSON.stringify(parsedResponse.data));
-            console.log(localStorage.getItem('currentUser'));
-            console.log(currentUser);
+            if (parsedResponse.data == 'not a possible user') {
+                console.log('in if not a possible user');
+                alert('Sorry, the login info you provided is not correct. If you would like to create an account, please click the Create New Account button below.');
+                navigate('/users');
+            } else {
+                console.log('in else that is a possible user');
+                setCurrentUser({
+                    ...currentUser,
+                    username: parsedResponse.data.username,
+                    password: parsedResponse.data.password
+                });
+                localStorage.setItem('currentUser', JSON.stringify(parsedResponse.data));
+                console.log(localStorage.getItem('currentUser'));
+                console.log(currentUser);
+                navigate('/profile');
+            }
         } else {
             console.log(parsedResponse.data);
         };

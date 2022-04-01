@@ -18,16 +18,16 @@ const Profile = (props) => {
         navigate('/users');
     };
     // fetch items from server and display them
-    const getNeighborhoods = async () => {
-        try {
-            const neighborhoods = await fetch(`${apiUrl}/neighborhoods`);
-            const parsedNeighborhoods = await neighborhoods.json();
-            props.setNeighborhoods(parsedNeighborhoods.data);
-        } catch (err) {
-            console.log(err);
-        }
-    };
-    useEffect(getNeighborhoods, []);
+    // const getNeighborhoods = async () => {
+    //     try {
+    //         const neighborhoods = await fetch(`${apiUrl}/neighborhoods`);
+    //         const parsedNeighborhoods = await neighborhoods.json();
+    //         props.setNeighborhoods(parsedNeighborhoods.data);
+    //     } catch (err) {
+    //         console.log(err);
+    //     }
+    // };
+    //useEffect(getNeighborhoods, []);
     console.log(props.neighborhoods)
     return (
         <>
