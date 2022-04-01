@@ -41,9 +41,11 @@ const Login = (props) => {
     };
     return (
         <>
+            <h1>Create an Account: </h1>
             <form onSubmit={submitNewUser}>
                 Username: <input type="text" name="username" onChange={handleInputChange} value={newUser.username}></input>
                 Password: <input type="text" name="password" onChange={handleInputChange} value={newUser.password}></input>
+                {/* Add a Neighborhood: <input type="text" name="neighborhood" onChange={handleInputChange} value={newUser.neighborhood}></input> */}
                 <button type="submit">Submit</button>
             </form>
         </>

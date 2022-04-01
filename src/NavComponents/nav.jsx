@@ -15,7 +15,7 @@ const Nav = () => {
               <li>About</li>
             </Link>
             <Link to='/users'>
-              <li>Create Account</li>
+              <li>Login</li>
             </Link>
           </ul>
         </nav>
