@@ -170,13 +170,17 @@ const UserContainer = (props) => {
     useEffect(getUsers, []);
     return (
         <div>
-            <Login users={users} checkAccounts={checkAccounts} joinNeighborhood={props.joinNeighborhood} ></Login>
             { showing ?
-                <CreateAccount createNewUser={createNewUser} newUserServerError={newUserServerError}></CreateAccount>
-                :
-                <button onClick={toggleShowing}>Create New Account</button>
+                <>
+                    <CreateAccount createNewUser={createNewUser} newUserServerError={newUserServerError} toggleShowing={toggleShowing} ></CreateAccount>
+                    <button onClick={toggleShowing}>Back</button>
+                </>
+                 :
+                <>
+                    <Login users={users} checkAccounts={checkAccounts} joinNeighborhood={props.joinNeighborhood} ></Login>
+                    <button onClick={toggleShowing}>Create New Account</button>
+                </>
             }
-            
         </div>
     );
 };
