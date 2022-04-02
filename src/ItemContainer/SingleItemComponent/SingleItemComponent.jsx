@@ -37,12 +37,31 @@ const SingleItemComponent = (props) => {
             <img src={props.neighborhood.img} className="neighborhood-img"></img>
             <div className="buttons">
                 <button>View More</button>
-                <button onClick={(e)=>{
+                <button onClick={()=>{
                     //e.preventDefault();
                     const userId = JSON.parse(localStorage.getItem('currentUser'))._id
                     console.log(userId);
                     console.log('below is neighborhood id')
                     console.log(props.neighborhood._id);
+                    //props.joinNeighborhood(userId, props.neighborhood._id);
+                    // set updateUser here to get the second parameter for the join function
+                    // loop through all neighborhoods in user array and add new one by creating a whole new array
+                    let userNeighborhoods = JSON.parse(localStorage.getItem('currentUser')).neighborhood.push(props.neighborhood._id)
+                    console.log('below is now the new user with newly added neighborhood');
+                    console.log(localStorage.getItem('currentUser'));
+                    // const newJoined = [];
+                    // for (let i=0; i<userNewNeighborhoods.length; i++) {
+                    //     if (userNewNeighborhoods[i] == props.neighborhood._id) {
+                    //         userNewNeighborhoods.push(props.neighborhood._id)
+                    //     } else {
+                    //         user
+                    //     }
+                    // }
+                    props.setUpdateUser({
+                        username: JSON.parse(localStorage.getItem('currentUser')).username,
+                        password: JSON.parse(localStorage.getItem('currentUser')).password,
+                        neighborhood: [userNeighborhoods]
+                    })
                     props.joinNeighborhood(userId, props.neighborhood._id);
                 }}>Join</button>
                 <button onClick={ ()=> {

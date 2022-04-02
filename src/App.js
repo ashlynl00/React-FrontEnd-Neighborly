@@ -14,22 +14,35 @@ import apiUrl from "./apiConfig";
 
 function App() {
   const [neighborhoods, setNeighborhoods] = useState([]);
+  const [updateUser, setUpdateUser] = useState({});
+  // if there is a user logged in then:
+  // if (JSON.parse(localStorage.getItem('currentUser')) !== null) {
+  //   setUpdateUser({
+  //     username: JSON.parse(localStorage.getItem('currentUser')).username,
+  //     password: JSON.parse(localStorage.getItem('currentUser')).password,
+  //     neighborhoods: [JSON.parse(localStorage.getItem('currentUser')).neighborhood]
+  //   });
+  // } else {
+  //   console.log('you must log in');
+  // }
+  
   const joinNeighborhood = async (userId, neighborhoodToJoin) => {
     console.log("user id", userId);
     console.log("neighborhood id", neighborhoodToJoin)
     try{
         const apiResponse = await fetch(`${apiUrl}/users/${userId}`, {
             method: "PUT",
-            body: JSON.stringify(neighborhoodToJoin),
+            body: JSON.stringify({neighborhood: neighborhoodToJoin, userId: userId}),
             headers: {
-                "accept": "application/json"
+                "Content-Type": "application/json"
             }
         })
         const parsedResponse = await apiResponse.json();
         console.log(parsedResponse);
         if (parsedResponse.status == 200) {
             // how to add neighborhood to user neighborhood property?
-            console.log('hello');
+            console.log('below is now user');
+            console.log(parsedResponse.data);
         } else {
             console.log(parsedResponse.data);
         }
@@ -44,7 +57,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />}></Route>
           <Route path="/about" element={<About />}></Route>
-          <Route path="/view" element={<ItemContainer neighborhoods={neighborhoods} setNeighborhoods={setNeighborhoods} joinNeighborhood={joinNeighborhood} />}></Route>
+          <Route path="/view" element={<ItemContainer neighborhoods={neighborhoods} setNeighborhoods={setNeighborhoods} joinNeighborhood={joinNeighborhood} updateUser={updateUser} setUpdateUser={setUpdateUser} />}></Route>
           <Route path="/users" element={<Users joinNeighborhood={joinNeighborhood} />}></Route>
           <Route path="/profile" element={<Profile neighborhoods={neighborhoods} setNeighborhoods={setNeighborhoods} />}></Route>
           {/* <Route path="/create" element={<NewItemComponent createNewNeighborhood={createNewNeighborhood} newItemServerError={newItemServerError} />}></Route> */}
