@@ -1,10 +1,12 @@
 import React from "react";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import EditItemComponent from "./EditItemComponent/EditItemComponent";
 import apiUrl from "../../apiConfig";
 
 const SingleItemComponent = (props) => {
     //const [joinNeighborhoods, setJoinNeighborhoods] = useState();
+    let navigate = useNavigate();
     const [showing, setShowing] = useState(false);
     const toggleShowing = () => {
         setShowing(!showing);
@@ -30,21 +32,27 @@ const SingleItemComponent = (props) => {
     //     console.log(err);
     // }
     // };
-    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
-    console.log('below is current user in single item component');
-    console.log(currentUser);
-    let currentUserNeighborhoods = JSON.parse(localStorage.getItem('currentUser')).neighborhood;
-    let checkJoinedNeighborhood = false;
-    console.log(currentUserNeighborhoods);
-    console.log('before for loop');
-    for (let i = 0; i<currentUserNeighborhoods.length; i++) {
-        console.log('in for loop');
-        console.log(currentUserNeighborhoods[i]);
-        if (currentUserNeighborhoods[i] == props.neighborhood._id) {
-            // this means the current user has joined this neighborhood group
-            checkJoinedNeighborhood = true;
+    const [checkJoinedNeighborhood, setCheckJoinedNeighborhood] = useState(false);
+    const checkIfJoined = () => {
+        //window.location.reload();
+        let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+        console.log('below is current user in single item component');
+        console.log(currentUser);
+        let currentUserNeighborhoods = JSON.parse(localStorage.getItem('currentUser')).neighborhood;
+        //checkJoinedNeighborhood = false;
+        console.log(currentUserNeighborhoods);
+        console.log('before for loop');
+        for (let i = 0; i<currentUserNeighborhoods.length; i++) {
+            console.log('in for loop');
+            console.log(currentUserNeighborhoods[i]);
+            if (currentUserNeighborhoods[i] == props.neighborhood._id && !checkJoinedNeighborhood) {
+                // this means the current user has joined this neighborhood group
+                setCheckJoinedNeighborhood(true);
+                console.log("found it");
+            }
         }
     }
+    checkIfJoined();
     return (
         <div>
             <h1>{props.neighborhood.name}</h1>
@@ -52,11 +60,13 @@ const SingleItemComponent = (props) => {
             <div className="buttons">
                 <button>View More</button>
                 {checkJoinedNeighborhood ? 
-                    <button id="joined-btn" onClick={()=> {
+                    <button id="joined-btn" onClick={async ()=> {
                         let userIdUnJoin = JSON.parse(localStorage.getItem('currentUser'))._id;
-                        props.unJoinNeighborhood(userIdUnJoin, props.neighborhood._id);
-                        checkJoinedNeighborhood = false;
-                        // window.location.reload();
+                        await props.unJoinNeighborhood(userIdUnJoin, props.neighborhood._id);
+                        setCheckJoinedNeighborhood(false);
+                        console.log('unjoined');
+                        //checkIfJoined();
+                        //checkJoinedNeighborhood = false;
                     }}>Joined</button>
                     :
                     <button onClick={()=>{
@@ -85,7 +95,9 @@ const SingleItemComponent = (props) => {
                         //     neighborhood: [userNeighborhoods]
                         // })
                         props.joinNeighborhood(userId, props.neighborhood._id);
-                        checkJoinedNeighborhood = true;
+                        setCheckJoinedNeighborhood(true);
+                        //checkIfJoined();
+                        //checkJoinedNeighborhood = true;
                     }}>Join</button>
                 }
                 {/* <button onClick={()=>{
