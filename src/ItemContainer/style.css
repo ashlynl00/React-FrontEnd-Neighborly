@@ -16,3 +16,7 @@ button:hover {
 .neighborhood-img {
     width: 500px;
 }
+
+#joined-btn {
+    background-color: lightgrey;
+}

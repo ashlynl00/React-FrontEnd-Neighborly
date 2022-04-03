@@ -30,14 +30,65 @@ const SingleItemComponent = (props) => {
     //     console.log(err);
     // }
     // };
-    
+    let currentUser = JSON.parse(localStorage.getItem('currentUser'));
+    console.log('below is current user in single item component');
+    console.log(currentUser);
+    let currentUserNeighborhoods = JSON.parse(localStorage.getItem('currentUser')).neighborhood;
+    let checkJoinedNeighborhood = false;
+    console.log(currentUserNeighborhoods);
+    console.log('before for loop');
+    for (let i = 0; i<currentUserNeighborhoods.length; i++) {
+        console.log('in for loop');
+        console.log(currentUserNeighborhoods[i]);
+        if (currentUserNeighborhoods[i] == props.neighborhood._id) {
+            // this means the current user has joined this neighborhood group
+            checkJoinedNeighborhood = true;
+        }
+    }
     return (
         <div>
             <h1>{props.neighborhood.name}</h1>
             <img src={props.neighborhood.img} className="neighborhood-img"></img>
             <div className="buttons">
                 <button>View More</button>
-                <button onClick={()=>{
+                {checkJoinedNeighborhood ? 
+                    <button id="joined-btn" onClick={()=> {
+                        let userIdUnJoin = JSON.parse(localStorage.getItem('currentUser'))._id;
+                        props.unJoinNeighborhood(userIdUnJoin, props.neighborhood._id);
+                        checkJoinedNeighborhood = false;
+                        // window.location.reload();
+                    }}>Joined</button>
+                    :
+                    <button onClick={()=>{
+                        //e.preventDefault();
+                        const userId = JSON.parse(localStorage.getItem('currentUser'))._id
+                        console.log(userId);
+                        console.log('below is neighborhood id')
+                        console.log(props.neighborhood._id);
+                        //props.joinNeighborhood(userId, props.neighborhood._id);
+                        // set updateUser here to get the second parameter for the join function
+                        // loop through all neighborhoods in user array and add new one by creating a whole new array
+                        //let userNeighborhoods = JSON.parse(localStorage.getItem('currentUser')).neighborhood.push(props.neighborhood._id)
+                        //console.log('below is now the new user with newly added neighborhood');
+                        //console.log(localStorage.getItem('currentUser'));
+                        // const newJoined = [];
+                        // for (let i=0; i<userNewNeighborhoods.length; i++) {
+                        //     if (userNewNeighborhoods[i] == props.neighborhood._id) {
+                        //         userNewNeighborhoods.push(props.neighborhood._id)
+                        //     } else {
+                        //         user
+                        //     }
+                        // }
+                        // props.setUpdateUser({
+                        //     username: JSON.parse(localStorage.getItem('currentUser')).username,
+                        //     password: JSON.parse(localStorage.getItem('currentUser')).password,
+                        //     neighborhood: [userNeighborhoods]
+                        // })
+                        props.joinNeighborhood(userId, props.neighborhood._id);
+                        checkJoinedNeighborhood = true;
+                    }}>Join</button>
+                }
+                {/* <button onClick={()=>{
                     //e.preventDefault();
                     const userId = JSON.parse(localStorage.getItem('currentUser'))._id
                     console.log(userId);
@@ -63,7 +114,7 @@ const SingleItemComponent = (props) => {
                         neighborhood: [userNeighborhoods]
                     })
                     props.joinNeighborhood(userId, props.neighborhood._id);
-                }}>Join</button>
+                }}>Join</button> */}
                 <button onClick={ ()=> {
                     props.deleteNeighborhood(props.neighborhood._id);
                 }}>Delete this Neighborhood</button>

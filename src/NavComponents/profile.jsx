@@ -37,22 +37,27 @@ const Profile = (props) => {
                     <button>Join a Neighborhood</button>
                 </Link>
                 :
-                props.neighborhoods.map((neighborhood)=> {
-                    console.log(neighborhood)
-                    console.log(userNeighborhoods);
-                    return (
-                        userNeighborhoods.map((userNeighborhood)=> {
-                            if (neighborhood._id == userNeighborhood) {
-                                return(
-                                    <>
-                                        <img src={neighborhood.img}></img>
-                                        <p>{neighborhood.name}</p>
-                                    </>
-                                )
-                            }
-                        })
-                    )
-                })
+                <>
+                    {props.neighborhoods.map((neighborhood)=> {
+                        console.log(neighborhood)
+                        console.log(userNeighborhoods);
+                        return (
+                            userNeighborhoods.map((userNeighborhood)=> {
+                                if (neighborhood._id == userNeighborhood) {
+                                    return(
+                                        <>
+                                            <img src={neighborhood.img}></img>
+                                            <p>{neighborhood.name}</p>
+                                        </>
+                                    )
+                                }
+                            })
+                        )
+                    })}
+                    <Link to='/view'>
+                        <button>Join a Neighborhood</button>
+                    </Link>
+                </>
             }
             <button onClick={logout}>Logout</button>
         </>

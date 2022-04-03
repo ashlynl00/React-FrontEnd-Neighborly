@@ -133,7 +133,7 @@ const ItemContainer = (props) => {
             {props.neighborhoods.map( (neighborhood) => {
                 console.log(neighborhood._id);
                 return (
-                    <SingleItemComponent key={neighborhood._id} joinNeighborhood={props.joinNeighborhood} neighborhood={neighborhood} deleteNeighborhood={deleteNeighborhood} updateNeighborhood={updateNeighborhood} updateUser={props.updateUser} setUpdateUser={props.setUpdateUser}></SingleItemComponent>
+                    <SingleItemComponent key={neighborhood._id} joinNeighborhood={props.joinNeighborhood} unJoinNeighborhood={props.unJoinNeighborhood} neighborhood={neighborhood} deleteNeighborhood={deleteNeighborhood} updateNeighborhood={updateNeighborhood} updateUser={props.updateUser} setUpdateUser={props.setUpdateUser}></SingleItemComponent>
                 )
             })}
             <br></br>
