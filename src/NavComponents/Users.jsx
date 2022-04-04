@@ -163,7 +163,11 @@ const UserContainer = (props) => {
         if (parsedResponse.status == 200) {
             if (parsedResponse.data == 'not a possible user') {
                 console.log('in if not a possible user');
-                alert('Sorry, the login info you provided is not correct. If you would like to create an account, please click the Create New Account button below.');
+                alert('Sorry, the username login info you provided is not correct. If you would like to create an account, please click the Create New Account button below.');
+                navigate('/users');
+            } else if (parsedResponse.data == 'did not match') {
+                console.log('in else if that password data from api did not match');
+                alert('Sorry, but the password you provided is not correct, please retry or create a new account.');
                 navigate('/users');
             } else {
                 console.log('in else that is a possible user');
