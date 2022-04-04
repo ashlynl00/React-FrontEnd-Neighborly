@@ -37,15 +37,29 @@ const UserContainer = (props) => {
         const parsedResponse = await apiResponse.json();
         // if response is success: 
         if (parsedResponse.status == 200) {
-            // add the new item to state
-            setUsers([parsedResponse.data, ...users]);
-            console.log(users);
+            if (parsedResponse.data == 'this username already exists') {
+                console.log('username already exists, in if');
+                alert('This username already exists! Please create a unique username.');
+                navigate('/users');
+            } else {
+                console.log('username does not exist and in else')
+                // add the new item to state
+                setUsers([parsedResponse.data, ...users]);
+                console.log(users);
+            }
         } else {
             //else:
             // show the error message in the form, don't change it back
-            console.log('here');
-            console.log(parsedResponse.data);
-            setNewUserServerError(parsedResponse.data);
+            console.log('in catch err');
+            if (parsedResponse.data == 'duplicate usernames') {
+                console.log('username already exists, in if');
+                alert('This username already exists! Please create a unique username.');
+                navigate('/users');
+                setShowing(true);
+            } else {
+                console.log(parsedResponse.data);
+                setNewUserServerError(parsedResponse.data);
+            }
         }
     };
     // create delete function
