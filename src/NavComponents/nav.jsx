@@ -25,7 +25,12 @@ const Nav = () => {
                 <li>Login</li>
               </Link>
               :
-              <li onClick={logout} >Logout</li>
+              <>
+                <Link to='/profile'>
+                  <li>Profile</li>
+                </Link>
+                <li onClick={logout} >Logout</li>
+              </>
             }
           </ul>
         </nav>
