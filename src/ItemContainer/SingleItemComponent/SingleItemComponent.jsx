@@ -132,26 +132,6 @@ const SingleItemComponent = (props) => {
                     props.deleteNeighborhood(props.neighborhood._id);
                 }}>Delete this Neighborhood</button>
             </div>
-            <button onClick={()=> {
-                    console.log(props.neighborhood.events.length);
-                    return (
-                        <>
-                            {console.log('inside return')}
-                            {props.neighborhood.events.length == 0 ?
-                                <>
-                                    {console.log('inside this')}
-                                    <p>hello</p>
-                                    <button>Add an event</button>
-                                </>
-                                :
-                                <>
-                                    <button>Add an event</button>
-                                    <p>{props.neighborhood.events}</p>
-                                </>
-                            }
-                        </> 
-                    )
-                }}>View More</button>
             {showing ?
                 <div id="edit-neighborhood-form">
                     {/* close button for form */}
