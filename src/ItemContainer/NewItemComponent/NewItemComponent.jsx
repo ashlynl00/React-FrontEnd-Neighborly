@@ -10,7 +10,7 @@ const NewItemComponent = (props) => {
     const [newNeighborhood, setNewNeighborhood] = useState ({
         name: "",
         location: "",
-        img: ""
+        img: "https://i.imgur.com/wG8tIvl.jpg"
     });
     const handleInputChange = (e) => {
         setNewNeighborhood ({
