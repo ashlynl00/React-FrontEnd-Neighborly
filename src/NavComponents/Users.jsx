@@ -179,6 +179,7 @@ const UserContainer = (props) => {
                 localStorage.setItem('currentUser', JSON.stringify(parsedResponse.data));
                 console.log(localStorage.getItem('currentUser'));
                 console.log(currentUser);
+                navigate('/view');
                 navigate('/profile');
             }
         } else {

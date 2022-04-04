@@ -52,13 +52,14 @@ const SingleItemComponent = (props) => {
             }
         }
     }
-    checkIfJoined();
+    if (JSON.parse(localStorage.getItem('currentUser')) !== null) {
+        checkIfJoined();
+    };
     return (
         <div>
             <h1>{props.neighborhood.name}</h1>
             <img src={props.neighborhood.img} className="neighborhood-img"></img>
             <div className="buttons">
-                <button>View More</button>
                 {checkJoinedNeighborhood ? 
                     <button id="joined-btn" onClick={async ()=> {
                         let userIdUnJoin = JSON.parse(localStorage.getItem('currentUser'))._id;
@@ -131,6 +132,26 @@ const SingleItemComponent = (props) => {
                     props.deleteNeighborhood(props.neighborhood._id);
                 }}>Delete this Neighborhood</button>
             </div>
+            <button onClick={()=> {
+                    console.log(props.neighborhood.events.length);
+                    return (
+                        <>
+                            {console.log('inside return')}
+                            {props.neighborhood.events.length == 0 ?
+                                <>
+                                    {console.log('inside this')}
+                                    <p>hello</p>
+                                    <button>Add an event</button>
+                                </>
+                                :
+                                <>
+                                    <button>Add an event</button>
+                                    <p>{props.neighborhood.events}</p>
+                                </>
+                            }
+                        </> 
+                    )
+                }}>View More</button>
             {showing ?
                 <div id="edit-neighborhood-form">
                     {/* close button for form */}

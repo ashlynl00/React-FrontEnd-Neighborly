@@ -36,3 +36,28 @@ nav ul {
     padding: 10px;
     margin: 40px;
 }
+
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 40px;
+}
+
+#joined-img {
+    width: 450px;
+    height: 350px;
+}
+
+#events {
+    list-style-type: none;
+    margin-bottom: 20px;
+}
+
+#event-list {
+    padding-left: 0;
+}
+
+#event-name {
+    font-weight: bolder;
+}
