@@ -1,7 +1,7 @@
 # Neighborly - A MERN Application
 
 ## Links to Apps
-Client-Side: https://mysterious-shore-30706.herokuapp.com/
+Client-Side: https://neighborlygroup.herokuapp.com/
 Back-End: https://pacific-inlet-98825.herokuapp.com/users
 
 ## Description
