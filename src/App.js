@@ -102,8 +102,8 @@ const unJoinNeighborhood = async (userId, neighborhoodIdToRemove) => {
 const Home = () => {
   return (
     <main>
-          <h1>Welcome to Neighborly!</h1>
-          <h2>Find your neighborhood community!</h2>
+          <h1>NEIGHBORLY</h1>
+          <h2>Find your neighborhood communitiy</h2>
           <div className='buttons'>
             <Link to='/view'>
               <button>View Neighborhoods</button>

@@ -51,6 +51,7 @@ main {
   flex-direction: column;
   justify-content: center;
   color: white;
+  font-family: 'Roboto Flex', sans-serif;
 }
 
 @keyframes shrink {
@@ -60,4 +61,27 @@ main {
   100% {
     background-size: 100% 100%;
   }
+}
+
+main h1 {
+  font-size: 14px;
+}
+
+main h2 {
+  font-size: 36px;
+  letter-spacing: 2px;
+  width: 500px;
+  margin: 0 auto;
+}
+
+main button {
+  border: white solid 2px;
+  background-color: rgba(255, 255, 255, 0);
+  border-radius: 0;
+  color: white;
+}
+
+main button:hover {
+  background-color: white;
+  color: black;
 }
