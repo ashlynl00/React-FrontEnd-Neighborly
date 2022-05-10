@@ -130,14 +130,25 @@ const ItemContainer = (props) => {
     useEffect(getNeighborhoods, []);
     return (
         <div>
-            {props.neighborhoods.map( (neighborhood) => {
-                console.log(neighborhood._id);
-                return (
-                    <SingleItemComponent key={neighborhood._id} joinNeighborhood={props.joinNeighborhood} unJoinNeighborhood={props.unJoinNeighborhood} neighborhood={neighborhood} deleteNeighborhood={deleteNeighborhood} updateNeighborhood={updateNeighborhood} updateUser={props.updateUser} setUpdateUser={props.setUpdateUser}></SingleItemComponent>
-                )
-            })}
-            <br></br>
-            <NewItemComponent createNewNeighborhood={createNewNeighborhood} newItemServerError={newItemServerError}></NewItemComponent>
+            { props.neighborhoods.length < 1 ?
+                <div id="empty-neighborhoods-wrapper">
+                    <NewItemComponent createNewNeighborhood={createNewNeighborhood} newItemServerError={newItemServerError} id="empty-neighborhoods-new"></NewItemComponent>
+                </div>
+                :
+                <>
+                    <br></br><br></br><br></br>
+                    <NewItemComponent createNewNeighborhood={createNewNeighborhood} newItemServerError={newItemServerError}></NewItemComponent>
+                    {props.neighborhoods.map( (neighborhood) => {
+                        console.log(neighborhood._id);
+                        return (
+                            <>
+                                <tr></tr>
+                                <SingleItemComponent key={neighborhood._id} joinNeighborhood={props.joinNeighborhood} unJoinNeighborhood={props.unJoinNeighborhood} neighborhood={neighborhood} deleteNeighborhood={deleteNeighborhood} updateNeighborhood={updateNeighborhood} updateUser={props.updateUser} setUpdateUser={props.setUpdateUser}></SingleItemComponent>
+                            </>
+                        )
+                    })}
+                </>
+            }
         </div>
     );
 };

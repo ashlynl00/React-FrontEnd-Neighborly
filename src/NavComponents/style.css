@@ -60,3 +60,41 @@ nav ul {
 #event-name {
     font-weight: bolder;
 }
+
+.background {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    background: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0.45)), url('https://images.pexels.com/photos/697243/pexels-photo-697243.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2');
+    background-size: cover;
+}
+
+.login-wrapper {
+    position: absolute;
+    height: 300px;
+    width: 600px;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: rgba(255, 255, 255, 0.808);
+    border: solid black 2px;
+}
+
+.login-wrapper form {
+    display: flex;
+    flex-direction: column;
+}
+
+#create-new-user-btn {
+    background-color: rgba(240, 248, 255, 0);
+    border: none;
+    text-decoration: underline;
+}
+
+#create-new-user-btn:hover {
+    color: rgb(255, 166, 0);
+}

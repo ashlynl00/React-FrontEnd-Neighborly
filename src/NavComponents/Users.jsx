@@ -190,15 +190,19 @@ const UserContainer = (props) => {
     return (
         <div>
             { showing ?
-                <>
-                    <CreateAccount createNewUser={createNewUser} newUserServerError={newUserServerError} toggleShowing={toggleShowing} ></CreateAccount>
-                    <button onClick={toggleShowing}>Back</button>
-                </>
+                <div className="background">
+                    <div className="login-wrapper">
+                        <CreateAccount createNewUser={createNewUser} newUserServerError={newUserServerError} toggleShowing={toggleShowing} ></CreateAccount>
+                        <button onClick={toggleShowing}>Back</button>
+                    </div>
+                </div>
                  :
-                <>
-                    <Login users={users} checkAccounts={checkAccounts} joinNeighborhood={props.joinNeighborhood} ></Login>
-                    <button onClick={toggleShowing}>Create New Account</button>
-                </>
+                <div className="background">
+                    <div className="login-wrapper">
+                        <Login users={users} checkAccounts={checkAccounts} joinNeighborhood={props.joinNeighborhood} ></Login>
+                        <button onClick={toggleShowing} id="create-new-user-btn">Create New Account</button>
+                    </div>
+                </div>
             }
         </div>
     );
